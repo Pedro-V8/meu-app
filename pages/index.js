@@ -1,7 +1,23 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
+import axios from 'axios'
+import React from 'react'
 
-export default function Home() {
+
+export async function getServerSideProps() {
+  const response = await fetch('https://wa-images-backend.herokuapp.com/imagens') 
+  const data = await response.json()  
+  return {
+    props: {
+      data
+    }
+  }
+}
+
+
+export default function Home({ data }) {
+  let results = data
+  console.log(results)
   return (
     <div className={styles.container}>
       <Head>
@@ -11,8 +27,13 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Estou com Heroku
+          Teste Waifu
+
         </h1>
+
+        <img src={ results[0].url }/>
+
+
 
         <p className={styles.description}>
           Get started by editing{' '}
@@ -63,3 +84,12 @@ export default function Home() {
     </div>
   )
 }
+
+
+
+
+
+
+
+
+
