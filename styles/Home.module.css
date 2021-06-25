@@ -120,3 +120,31 @@
     flex-direction: column;
   }
 }
+
+.image {
+  width: 40%;
+  max-height: 40%;
+}
+
+.manager{
+  display: flex;
+  justify-content: center;
+
+}
+
+.option{
+  height: 65px;
+
+  cursor: pointer;
+}
+
+.esquerda{
+  cursor: pointer;
+  margin-right: 70px;
+}
+
+.direita{
+  cursor: pointer;
+  margin-left: 70px;
+
+}
