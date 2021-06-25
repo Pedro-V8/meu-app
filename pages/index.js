@@ -1,7 +1,7 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import axios from 'axios'
-import React from 'react'
+import React, { useState } from 'react'
 
 
 export async function getServerSideProps() {
@@ -16,8 +16,32 @@ export async function getServerSideProps() {
 
 
 export default function Home({ data }) {
+  const [ indice , setIndice ] = useState(0)
   let results = data
   console.log(results)
+
+  function aumentaIndice(){
+    if(indice === results.length){
+      setIndice(0)
+    }else{
+      console.log(indice)
+      setIndice(indice + 1)
+    }
+
+    console.log(indice)
+  }
+
+  function diminuiIndice(){
+    if(indice < 0){
+      setIndice(0)
+    }else{
+      setIndice(indice - 1)
+    }
+
+    console.log(indice)
+  }
+
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -31,11 +55,11 @@ export default function Home({ data }) {
         </h1>
 
         <div className={styles.manager}>
-          <div className={styles.option}>
+          <div className={styles.option} onClick={diminuiIndice}>
             <img className={styles.esquerda} src="/sEsquerda.png"/>
           </div>
 
-          <button className={styles.botao}>CLICK ME</button>
+          <button className={styles.botao} onClick={aumentaIndice}>CLICK ME</button>
 
 
           <div className={styles.option}>
