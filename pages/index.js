@@ -18,13 +18,13 @@ export async function getServerSideProps() {
 export default function Home({ data }) {
   const [ indice , setIndice ] = useState(0)
   let results = data
-  console.log(results)
+
+  console.log(indice)
 
   function aumentaIndice(){
     if(indice === results.length){
       setIndice(0)
     }else{
-      console.log(indice)
       setIndice(indice + 1)
     }
 
@@ -32,7 +32,7 @@ export default function Home({ data }) {
   }
 
   function diminuiIndice(){
-    if(indice < 0){
+    if(indice === 0){
       setIndice(0)
     }else{
       setIndice(indice - 1)
@@ -49,29 +49,27 @@ export default function Home({ data }) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Teste Waifu
-        </h1>
+  
+      <h1 className={styles.title}>
+        Teste Waifu
+      </h1>
 
         <div className={styles.manager}>
           <div className={styles.option} onClick={diminuiIndice}>
-            <img className={styles.esquerda} src="/sEsquerda.png"/>
-          </div>
-
-          <button className={styles.botao} onClick={aumentaIndice}>CLICK ME</button>
-
-
-          <div className={styles.option}>
-            <img className={styles.direita} src="/sDireita.png"/>
-          </div>
-
-
+          <img className={styles.esquerda} src="/sEsquerda.png"/>
         </div>
 
-        <img src={ results[0].url } className={styles.image}/>
 
-      </main>
+
+        <div className={styles.option} onClick={aumentaIndice}>
+          <img className={styles.direita} src="/sDireita.png"/>
+        </div>
+
+
+      </div>
+
+      <img src={ results[indice].url } className={styles.image}/>
+
     </div>
   )
 }
